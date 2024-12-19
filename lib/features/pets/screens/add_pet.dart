@@ -114,6 +114,7 @@ class _AddPetScreenState extends State<AddPetScreen> {
                 color: Colors.black,
                 fontSize: 18,
                 fontFamily: "SfProMedium",
+                fontWeight: FontWeight.w500,
               )),
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -132,63 +133,64 @@ class _AddPetScreenState extends State<AddPetScreen> {
                     "Your pet name",
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 5),
-                  SizedBox(
-                    height: 55,
-                    child: TextFormField(
-                      controller: petNameController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter pet name";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "enter your pet name",
-                        hintStyle: const TextStyle(color: Color(0xffB0B0B0)),
-                        filled: true,
-                        fillColor: const Color(0xffF9FAFB),
-
-                        // Normal border
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Color(0xffEBECEF),
-                            width: 1.0,
-                          ),
-                        ),
-
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Color(0xffEBECEF),
-                            width: 2.5,
-                          ),
-                        ),
-
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 2.5,
-                          ),
-                        ),
-
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 2.5,
-                          ),
-                        ),
-
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 20),
+                  TextFormField(
+                    controller: petNameController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter pet name";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "enter your pet name",
+                      hintStyle: GoogleFonts.inter(
+                        color: const Color(0xffB0B0B0),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
                       ),
+                      filled: true,
+                      fillColor: const Color(0xffF9FAFB),
+
+                      // Normal border
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 1.0,
+                        ),
+                      ),
+
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 20),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -198,50 +200,58 @@ class _AddPetScreenState extends State<AddPetScreen> {
                     "Your pet owner name",
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 5),
-                  SizedBox(
-                    height: 55,
-                    child: TextFormField(
-                      controller: ownerNameController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter pet owner name";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "enter your pet owner name",
-                        hintStyle: const TextStyle(color: Color(0xffB0B0B0)),
-                        filled: true,
-                        fillColor: const Color(0xffF9FAFB),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Color(0xffEBECEF),
-                            width: 1.0, // Border width
-                          ),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 2.5, // Border width
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Color(0xffEBECEF),
-                            width: 2.5,
-                          ),
-                        ),
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 20),
+                  TextFormField(
+                    controller: ownerNameController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter pet owner name";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "enter your pet owner name",
+                      hintStyle: GoogleFonts.inter(
+                        color: const Color(0xffB0B0B0),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
                       ),
+                      filled: true,
+                      fillColor: const Color(0xffF9FAFB),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 1.0, // Border width
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 20),
                     ),
                   ),
 
@@ -251,7 +261,7 @@ class _AddPetScreenState extends State<AddPetScreen> {
                     "Type of Pet",
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -286,6 +296,20 @@ class _AddPetScreenState extends State<AddPetScreen> {
                           width: 1.5,
                         ),
                       ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: const BorderSide(
@@ -304,7 +328,7 @@ class _AddPetScreenState extends State<AddPetScreen> {
                     "Gender",
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -346,6 +370,20 @@ class _AddPetScreenState extends State<AddPetScreen> {
                           width: 2.0,
                         ),
                       ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
                     ),
@@ -356,50 +394,58 @@ class _AddPetScreenState extends State<AddPetScreen> {
                     "Enter pet location",
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 5),
-                  SizedBox(
-                    height: 55,
-                    child: TextFormField(
-                      controller: locationController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter location";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "enter your pet location",
-                        hintStyle: const TextStyle(color: Color(0xffB0B0B0)),
-                        filled: true, // Enables background color
-                        fillColor: const Color(0xffF9FAFB), // Background color
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Color(0xffEBECEF),
-                            width: 1.0,
-                          ),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 2.5,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: const BorderSide(
-                            color: Color(0xffEBECEF),
-                            width: 2.5,
-                          ),
-                        ),
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 20),
+                  TextFormField(
+                    controller: locationController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter location";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "enter your pet location",
+                      hintStyle: GoogleFonts.inter(
+                        color: const Color(0xffB0B0B0),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
                       ),
+                      filled: true, // Enables background color
+                      fillColor: const Color(0xffF9FAFB), // Background color
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 1.0,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.5,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(
+                          color: Color(0xffEBECEF),
+                          width: 2.0,
+                        ),
+                      ),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 20),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -409,13 +455,13 @@ class _AddPetScreenState extends State<AddPetScreen> {
                     "Additional Notes",
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 5),
                   TextFormField(
                     controller: additionalNoteController,
-                    maxLines: 4,
+                    maxLines: 3,
                     decoration: InputDecoration(
                       hintText: "",
                       border: OutlineInputBorder(
@@ -439,23 +485,24 @@ class _AddPetScreenState extends State<AddPetScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
 
                   // Upload Photos
                   Text(
                     "Add your pet profile picture and upload pet photos",
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
                       pickImage();
                     },
                     child: DottedBorder(
-                      padding: const EdgeInsets.all(20),
+                      dashPattern: const [4, 4],
+                      padding: const EdgeInsets.all(15),
                       radius: const Radius.circular(30),
                       borderType: BorderType.RRect,
                       color: const Color(0xff494FDD),
@@ -468,6 +515,7 @@ class _AddPetScreenState extends State<AddPetScreen> {
                               style: GoogleFonts.inter(
                                 color: const Color(0xff494FDD),
                                 fontSize: 18,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             const SizedBox(
@@ -479,7 +527,7 @@ class _AddPetScreenState extends State<AddPetScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
 
                   if (imageFile != null)
                     Stack(
@@ -488,20 +536,23 @@ class _AddPetScreenState extends State<AddPetScreen> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(10),
                             child: Image.file(
                               imageFile!,
-                              width: 100,
-                              height: 100,
+                              width: 80,
+                              height: 80,
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
                         Positioned(
-                          right: -20,
-                          top: -11,
+                          right: -18,
+                          top: -9,
                           child: IconButton(
-                            icon: SvgPicture.asset(ImageConstants.removeIcon),
+                            icon: SvgPicture.asset(
+                              ImageConstants.removeIcon,
+                              width: 22,
+                            ),
                             onPressed: () {
                               setState(() {
                                 imageFile = null;
@@ -512,7 +563,7 @@ class _AddPetScreenState extends State<AddPetScreen> {
                       ],
                     ),
 
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
 
                   // Submit Button
                   add == true
@@ -542,7 +593,7 @@ class _AddPetScreenState extends State<AddPetScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.black,
                                 fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),

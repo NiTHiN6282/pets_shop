@@ -6,8 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:pets_shop/core/constants/constants.dart';
 import 'package:pets_shop/core/globals/globals.dart';
+import 'package:pets_shop/features/pets/screens/card.dart';
 
-import '../../models/pet_model.dart';
+import '../../../models/pet_model.dart';
 import 'add_pet.dart';
 
 class PetsList extends StatefulWidget {
@@ -87,99 +88,121 @@ class _PetsListState extends State<PetsList> {
                         ),
                       )
                     : Expanded(
-                        child: GridView.builder(
-                          itemCount: pets.length,
-                          shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                          ),
-                          itemBuilder: (context, index) {
-                            var pet = pets[index];
-                            return Container(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: Image.network(
-                                          pet.image,
-                                          height: 120,
-                                          width: 200,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: 6,
-                                        right: 6,
-                                        child: InkWell(
-                                          onTap: () {
-                                            if (favourites.contains(pet.id)) {
-                                              favourites.remove(pet.id);
-                                            } else {
-                                              favourites.add(pet.id);
-                                            }
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GridView.builder(
+                            itemCount: pets.length,
+                            shrinkWrap: true,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10,
+                                    childAspectRatio: 0.8),
+                            itemBuilder: (context, index) {
+                              var pet = pets[index];
+                              return Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: const Color(0xffE8E8E8),
+                                    ),
+                                    borderRadius: BorderRadius.circular(20)),
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Stack(
+                                      children: [
+                                        SizedBox(
+                                            height: 125,
+                                            child: CustomContainer(
+                                                url: pet.image)),
+                                        Positioned(
+                                          top: 6,
+                                          right: 6,
+                                          child: InkWell(
+                                            onTap: () {
+                                              if (favourites.contains(pet.id)) {
+                                                favourites.remove(pet.id);
+                                              } else {
+                                                favourites.add(pet.id);
+                                              }
 
-                                            setState(() {});
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                color: const Color(0xffE9E9E9),
-                                                borderRadius:
-                                                    BorderRadius.circular(40)),
-                                            child: Image.asset(
-                                              ImageConstants.likeIcon,
-                                              color: favourites.contains(pet.id)
-                                                  ? Colors.pink
-                                                  : Colors.white,
-                                              width: 40,
+                                              setState(() {});
+                                            },
+                                            child: Container(
+                                              width: 30,
+                                              padding: const EdgeInsets.all(0),
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      const Color(0xffE9E9E9),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          40)),
+                                              child: Transform.scale(
+                                                scale: 1.5,
+                                                child: Image.asset(
+                                                  ImageConstants.likeIcon,
+                                                  color: favourites
+                                                          .contains(pet.id)
+                                                      ? Colors.pink
+                                                      : Colors.white,
+                                                  width: 50,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Positioned(
-                                        bottom: 4,
-                                        right: 4,
-                                        child: SvgPicture.asset(
-                                          pet.gender == "Female"
-                                              ? ImageConstants.femaleIcon
-                                              : ImageConstants.maleIcon,
-                                          width: 30,
+                                        Positioned(
+                                          bottom: 4,
+                                          right: 4,
+                                          child: SvgPicture.asset(
+                                            pet.gender == "Female"
+                                                ? ImageConstants.femaleIcon
+                                                : ImageConstants.maleIcon,
+                                            width: 40,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    pet.petName,
-                                    style: const TextStyle(
-                                        fontFamily: "SfProMedium"),
-                                  ),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        ImageConstants.locationIcon,
-                                      ),
-                                      const SizedBox(
-                                        width: 8,
-                                      ),
-                                      SizedBox(
-                                        width: 140,
-                                        child: Text(
-                                          pet.location,
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          pet.petName,
                                           style: const TextStyle(
-                                              overflow: TextOverflow.ellipsis,
-                                              fontFamily: "SfProRegular"),
+                                              fontFamily: "SfProMedium"),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
+                                        Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              ImageConstants.locationIcon,
+                                            ),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                              child: Text(
+                                                pet.location,
+                                                style: const TextStyle(
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    fontFamily: "SfProRegular"),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
             // const Spacer(),
@@ -198,7 +221,10 @@ class _PetsListState extends State<PetsList> {
                     fetchPetDetails();
                   }
                 },
-                icon: SvgPicture.asset(ImageConstants.addIcon),
+                icon: SvgPicture.asset(
+                  ImageConstants.addIcon,
+                  width: 20,
+                ),
                 label: Text(
                   "Add New Pet",
                   style: GoogleFonts.inter(
