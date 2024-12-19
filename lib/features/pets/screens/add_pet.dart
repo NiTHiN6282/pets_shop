@@ -2,22 +2,22 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
-import 'package:pets_shop/core/utils.dart';
+import 'package:pets_shop/core/utils/utils.dart';
+import 'package:pets_shop/features/pets/controller/pets_controller.dart';
 
 import '../../../core/constants/constants.dart';
 
-class AddPetScreen extends StatefulWidget {
+class AddPetScreen extends ConsumerStatefulWidget {
   const AddPetScreen({super.key});
 
   @override
-  State<AddPetScreen> createState() => _AddPetScreenState();
+  ConsumerState<AddPetScreen> createState() => _AddPetScreenState();
 }
 
-class _AddPetScreenState extends State<AddPetScreen> {
+class _AddPetScreenState extends ConsumerState<AddPetScreen> {
   String? selectedPetType;
   String? selectedGender;
   List<String> petTypes = ["Dog", "Cat", "Bird", "Fish"];
@@ -33,70 +33,26 @@ class _AddPetScreenState extends State<AddPetScreen> {
       TextEditingController();
 
   File? imageFile;
-  final picker = ImagePicker();
 
-  Future<void> pickImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      if (pickedFile != null) {
-        imageFile = File(pickedFile.path);
-      }
-    });
+  pickImg() async {
+    imageFile = await pickImage();
+    setState(() {});
   }
 
-  Future<void> addPetDetails() async {
+  addPet() {
     if (imageFile == null) {
       showSnackBar(context, "Please select an image");
       return;
     }
-    add = true;
-    setState(() {});
-
-    var uri = Uri.parse('https://valamcars.rankuhigher.in/api/register/form');
-    var request = http.MultipartRequest('POST', uri);
-
-    request.fields['pet_name'] = petNameController.text;
-    request.fields['user_name'] = ownerNameController.text;
-    request.fields['pet_type'] = selectedPetType ?? "";
-    request.fields['gender'] = selectedGender ?? "";
-    request.fields['location'] = locationController.text;
-
-    request.files
-        .add(await http.MultipartFile.fromPath('image', imageFile!.path));
-
-    var response = await request.send();
-
-    if (response.statusCode == 200) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Pet added successfully!')),
+    ref.read(petsControllerProvider.notifier).addPet(
+          gender: selectedGender!,
+          imageFile: imageFile!,
+          location: locationController.text,
+          ownerName: ownerNameController.text,
+          petName: petNameController.text,
+          petType: selectedPetType!,
+          context: context,
         );
-        Navigator.pop(context, true);
-      }
-
-      clearForm();
-    } else {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to add pet details')),
-        );
-      }
-    }
-    add = false;
-    setState(() {});
-  }
-
-  bool add = false;
-
-  void clearForm() {
-    petNameController.clear();
-    ownerNameController.clear();
-    locationController.clear();
-    selectedPetType = null;
-    selectedGender = null;
-    setState(() {
-      imageFile = null;
-    });
   }
 
   @override
@@ -498,7 +454,7 @@ class _AddPetScreenState extends State<AddPetScreen> {
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                      pickImage();
+                      pickImg();
                     },
                     child: DottedBorder(
                       dashPattern: const [4, 4],
@@ -564,40 +520,31 @@ class _AddPetScreenState extends State<AddPetScreen> {
                     ),
 
                   const SizedBox(height: 30),
-
-                  // Submit Button
-                  add == true
-                      ? const Center(
-                          child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator()),
-                        )
-                      : SizedBox(
-                          width: double.infinity,
-                          height: 55,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (formkey.currentState!.validate()) {
-                                addPetDetails();
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFFDD835),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            ),
-                            child: Text(
-                              "Submit",
-                              style: GoogleFonts.inter(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 55,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (formkey.currentState!.validate()) {
+                          addPet();
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFFDD835),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
+                      ),
+                      child: Text(
+                        "Submit",
+                        style: GoogleFonts.inter(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
